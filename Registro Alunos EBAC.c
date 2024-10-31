@@ -67,12 +67,12 @@ int registro() // Função responsável por cadastrar os usuários no sistema
 		printf("\t2 - Não, escrever novamente os dados.\n");  // Opção 2 exclui os dados recém escritos e pede novamente para escrever os dados
 		printf("\tSelecione uma opção: ");
 		scanf("%d", &salvar);  // Define o valor da variável inteira salvar
-		if (salvar==1)
+		if (salvar==1)  
 		{
 			printf("\n\tOs dados foram salvados com sucesso.\n");
 			printf("\tRetornando ao menu inicial.\n\t");
 			system("pause");
-			break; // Sai do loop 
+			break; // Sai do loop e retorna ao menu inicial
 		}
 		else if (salvar==2)
 		{
@@ -139,53 +139,65 @@ int main()  // Função principal, o progrma sempre retornará nesta função
 {
 	int opcao=0;  // Variável de escolha do usuário para opção
 	int laco=1;
+	char senha[] = "a";  // Cria a variável senha com valor predefinido de "a"
+	int comparacao;  // Cria uma variável para que seja possível a comparação da senha
 	
-	for(laco=1;laco=1;)
+	setlocale(LC_ALL, "Portuguese");  // Define a loclaização para utilizar acentos e letras locais.
+	printf("\tBem vindo ao login do cartório EBAC.\n");
+	printf("\tDigite a senha: ");
+	scanf("%s", senha);  // Aloca o que o usuário digitou para a variável senha
+	
+	comparacao = strcmp(senha,"admin");
+	
+	if (comparacao == 0)
 	{
-		
-		system("cls");  // Comando para limpar a tela de prompt
-		
-		setlocale(LC_ALL, "Portuguese");  // Definindo a linguagem
-	
-		printf("\t### Cartório EBAC ### \n\n");  // Início do menu
-		printf("  Selecione a opção desejada: \n\n");
-		printf("\t1 - Registrar nomes\n");
-		printf("\t2 - Consultar nomes\n");
-		printf("\t3 - Excluir nomes\n");
-		printf("\t4 - Sair do programa\n\n");
-		printf("\tOpção: ");  // Final da informação do menu
-	
-		scanf("%d", &opcao);  //Seleção da opção por parte do usuário  // "%d" é utilizado para armazenar uma variável de valor inteiro
-	
-		system("cls");  // Comando para limpar a tela de prompt
-		
-		switch(opcao)  // Início da seleção de menus
+		for(laco=1;laco=1;)
 		{
-			case 1:
-			registro();  // Chamada da função registro();
-			break;
-			
-			case 2:
-			consulta();  // Chamado da função consulta();
-			break;
-			
-			case 3:
-			excluir();  // Chamado da função excluir();
-			break;
-			
-			case 4:
-			printf("\tObrigado por utilizar o sistema!\n"); 
-			return 0;  // Transforma o valor da variável 'laço' = 0 e quebra o loop do for, encerrando o programa
-			break;
-			
-			default:
-			printf("\tEssa opção não existe\n\n");  
-			system("pause");  //Pausa o programa até  seleção de uma nova opção pelo usuário
-			break;	
-		} // Final da seleção de menus
+			system("cls");  // Comando para limpar a tela de prompt
+		
+			printf("\t### Cartório EBAC ### \n\n");  // Início do menu
+			printf("  Selecione a opção desejada: \n\n");
+			printf("\t1 - Registrar nomes\n");
+			printf("\t2 - Consultar nomes\n");
+			printf("\t3 - Excluir nomes\n");
+			printf("\t4 - Sair do programa\n\n");
+			printf("\tOpção: ");  // Final da informação do menu
 	
+			scanf("%d", &opcao);  //Seleção da opção por parte do usuário  // "%d" é utilizado para armazenar uma variável de valor inteiro
 	
+			system("cls");  // Comando para limpar a tela de prompt
+		
+			switch(opcao)  // Início da seleção de menus
+			{
+				case 1:
+				registro();  // Chamada da função registro();
+				break;
+				
+				case 2:
+				consulta();  // Chamado da função consulta();
+				break;
+				
+				case 3:
+				excluir();  // Chamado da função excluir();
+				break;
+				
+				case 4:
+				printf("\tObrigado por utilizar o sistema!\n"); 
+				return 0;  // Transforma o valor da variável 'laço' = 0 e quebra o loop do for, encerrando o programa
+				break;
+				
+				default:
+				printf("\tEssa opção não existe\n\n");  
+				system("pause");  //Pausa o programa até  seleção de uma nova opção pelo usuário
+				break;	
+			} // Final da seleção de menus
+		}
+	}
+	else  // Caso a senha digitada seja diferente de "admin"
+	{
+		printf("\n\tSenha incorreta!\n");
+		printf("\tEncerrando o programa\n\n");  
 	}
 	
-	printf("Esse software foi desenvolvido por Francisco Wanderer");
+	printf("Esse software foi desenvolvido por Francisco Wanderer");  // Ultima linha de código do programa
 }
